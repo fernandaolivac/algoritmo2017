@@ -1,0 +1,92 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#include <string>
+#define MAX 100
+
+using namespace std;
+struct notas
+{ int nroestudiantes;
+string nombre;
+string apellido;
+int notapractica;
+int primerp;
+int segundop;
+int examenfinal;
+int notafinal;
+};
+//CARGAR VECTOR  
+void cargar (notas vect[], int n);
+void mostrar (notas vect[], int n);
+
+void main()
+{ int n;
+float prom;
+notas vect[MAX];
+do
+{
+	cout<<"ingrese el numero de estudiante:";
+	cin>>n;
+}
+while((n>MAX)||(n<=0));
+cargar ( vect,  n);
+for(int i=0;i<n;i++)
+{
+prom= ((vect[i].primerp+vect[i].segundop)*0.2);
+vect[i].notafinal = prom+(0.2*vect[i].notapractica)+(0.4*vect[i].examenfinal);
+}
+mostrar (vect, n);
+ getch();
+
+} 
+
+
+//funciones 
+void cargar (notas vect[], int n)
+{
+cin.ignore();
+for(int i=0;i<n;i++)
+{
+	vect[i].nroestudiantes=i+1;
+	cout<<"Ingrese el nombre del estudiante:";
+	getline(cin,vect[i].nombre);
+	cout<<"Ingrese el apellido del estudiante:";
+	getline(cin,vect[i].apellido);
+	do
+	{
+	cout<<"Ingrese la nota practica:";
+	cin>>vect[i].notapractica;
+	}while(vect[i].notapractica> 100);
+	do
+	{
+	cout<<"Ingrese la nota de su primer parcial:";
+	cin>>vect[i].primerp;
+	}while(vect[i].primerp>100);
+	do
+	{
+	cout<<"Ingrese la nota de su segundo parcial:";
+	cin>>vect[i].segundop;
+	}while(vect[i].segundop>100);
+	do
+	{
+	cout<<"Ingrese su nota de su examen final:";
+	cin>>vect[i].examenfinal;
+	}while(vect[i].examenfinal>100);
+cin.ignore();
+}	
+}
+void mostrar (notas vect[], int n)
+{
+	for(int i=0;i<n;i++)
+	{
+		cout<<endl<<vect[i].nroestudiantes<<"\t";
+		cout<<vect[i].nombre<<"\t";
+		cout<<vect[i].apellido<<"\t";
+		cout<<vect[i].notapractica<<"\t";
+		cout<<vect[i].primerp<<"\t";
+		cout<<vect[i].segundop<<"\t";
+		cout<<vect[i].examenfinal<<"\t";
+		cout<<vect[i].notafinal<<"\t";
+
+	}
+}
