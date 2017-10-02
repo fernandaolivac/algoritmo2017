@@ -1,0 +1,32 @@
+STRING PALINDROMO
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include "conio.h"
+
+
+using namespace std;
+
+void main()
+
+{
+	int tam;
+	string palabra;
+		cout<< "Escribe una palabra :" ;
+		getline(cin,palabra);
+
+	string alreves;
+	tam=palabra.length();
+	for( int i=tam-1;i>=0;i--)
+	{
+		alreves=alreves+palabra[i];
+	}
+	cout<< alreves;
+		if(palabra==alreves)
+		{
+			cout<< "\n Es palindromo:";
+		}else
+			cout << "\n No es palindromo:";
+getch();
+}
