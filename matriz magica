@@ -1,0 +1,114 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "math.h"
+#define MAX 10
+
+using namespace std;
+
+void cargar (int a[MAX][MAX],int n);
+void mostrar (int a[MAX][MAX],int n);
+void magica (int [MAX][MAX],int n);
+
+void main()
+{
+	int fil,col,a[MAX][MAX],n,k;
+	cout<<"INTRODUCIR EL NUMERO DE FILAS Y COLUMNAS  "<<endl;
+	cin>>n;
+	cout<<endl;
+	cargar(a,n);
+	mostrar(a,n);
+	magica(a,n);
+
+	getch();
+
+}
+
+void cargar (int a[MAX][MAX],int n)
+{
+	int i,j;
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cout<<"INTRODUCIR EL ELEMENTO: ["<<i<<"]["<<j<<"]"<<endl;
+			cin>>a[i][j];
+		}
+	}
+}
+void mostrar (int a[MAX][MAX],int n)
+{
+	int i,j;
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			cout<<a[i][j]<<"\t";
+		}
+		cout<<endl;
+	}
+}
+void magica (int a[MAX][MAX],int n)
+{
+	int i,j,vec[1000],k;
+	int aux=0,tamv=0;
+
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+
+			aux=aux+a[i][j];
+			vec[tamv]=aux;
+			tamv++;
+			aux=0;
+		}
+	}
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+
+			aux=aux+a[j][i];
+			vec[tamv]=aux;
+			tamv++;
+			aux=0;
+		}
+	}
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+
+			aux=aux+a[i][i];
+		}
+	}
+	vec[tamv]=aux;
+	tamv++;
+	aux=0;
+
+	for(i=0;i<n;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			if((i+j)==(n-1))
+
+				aux=aux+a[i][j];
+		}
+	}
+	vec[tamv]=aux;
+	tamv++;
+	aux=0;
+
+	k=1;
+	for(int i=0;i<tamv;i++)
+	{
+		if (vec[i]!=vec[i+1])
+			k=0;
+	}
+	if(k==1)
+		cout<<"ES UNA MATRIZ MAGICA"<<endl;
+	else
+		cout<<"NO ES UNA MATRIZ MAGICA"<<endl;
+
+}
