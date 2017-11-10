@@ -1,0 +1,84 @@
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "math.h"
+#define MAX 10
+
+using namespace std;
+
+void cargar (int mat[MAX][MAX],int fil,int col);
+void mostrar (int mat[MAX][MAX],int fil,int col );
+void multiplicar (int mat[MAX][MAX],int mat1[MAX][MAX],int fil,int col,int fil1,int col1);
+
+void main ()
+{
+	int i,j,fil,col,col1,fil1,mat1[MAX][MAX],mat2[MAX][MAX];
+	cout<<"INGRESE EL NUMERO DE FILAS"<<endl;
+	cin>>fil;
+	cout<<"INGRESE EL NUMERO DE COLUMNAS"<<endl;
+	cin>>col;
+	cout<<"INGRESE EL NUMERO DE FILAS MAT 2"<<endl;
+	cin>>fil1;
+	cout<<"INGRESE EL NUMERO DE COLUMNAS MAT 2"<<endl;
+	cin>>col1;
+	cout<<"MATRIZ 1"<<endl;
+	cargar(mat1,fil,col);
+	cout<<endl;
+	mostrar(mat1,fil,col);
+	cout<<endl;
+	cargar(mat2,fil1,col1);
+	cout<<endl;
+	mostrar(mat2,fil1,col1);
+	cout<<endl;
+	multiplicar(mat1,mat2,fil,col,fil1,col1);
+
+	getch();
+}
+void cargar (int mat[MAX][MAX],int fil,int col)
+{
+	int i,j;
+	for (i=0;i<fil;i++)
+	{
+		for(j=0;j<col;j++)
+		{
+			cout<<"INTRODUCIR EL ELEMENTO ["<<i<<"]["<<j<<"]: ";
+			cin>>mat[i][j];
+		}
+	}
+}
+void mostrar (int mat[MAX][MAX],int fil,int col )
+{
+	int i,j;
+for (i=0;i<fil;i++)
+	{
+		for (j=0;j<col;j++)
+		{
+			cout<<mat[i][j]<<"\t";
+		}
+		cout<<endl;
+	}
+}
+
+void multiplicar (int mat[MAX][MAX],int mat1[MAX][MAX],int fil,int col,int fil1,int col1)
+{
+	int i,j,k,mat2[MAX][MAX],result=0,fil2,col2,x;
+	if (col=fil1)
+	{
+		col2=col1;
+		fil2=fil;
+		x=col=fil1;
+		for(i=0;i<fil;i++)
+		{
+			for(j=0;j<col;j++)
+			{
+				mat2[i][j]=0;
+				for(k=0;k<x;k++)
+					mat2[i][j]=mat2[i][j]+(mat[i][k]*mat1[k][j]);
+			}
+		}
+		cout<<"LA MATRIZ RESULTANTE DE LA MULTIPLICACION ES : "<<endl;
+		mostrar(mat2,fil2,col2);
+	}
+	else
+		cout<<"NO SE PUEDE MULTIPLICAR"<<endl;
+}
